@@ -1,2 +1,2 @@
 # wormhole-carbonate-acidizing
-Modeling worm hole in carbonate acidizing process with fuzzy logic
+Ini merupakan sebuah program untuk memodelkan proses terbentuknya wormhole pada proses carbonate acidizing. Pemodelan ini menggunakan pendekatan artificial intelligence yaitu fuzzy logic inferencing system.
