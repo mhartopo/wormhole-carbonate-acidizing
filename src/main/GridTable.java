@@ -21,6 +21,15 @@ public class GridTable {
 		this.setTable(Table);
 		this.setSize(Size); 
 	}
+	public GridTable(InputFile in) {
+		in.Read();
+		Size = in.getSize();
+		for(int i = 0; i < Size; i++) {
+			for(int j = 0; j < Size; j++) {
+				Table[i][j] = new Grid(in.getData()[i][j], 0);
+			}
+		}
+	}
 	public int getSize() {
 		return Size;
 	}

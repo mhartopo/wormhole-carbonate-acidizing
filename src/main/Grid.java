@@ -3,10 +3,12 @@ package main;
 public class Grid {
 	private float velocity;
 	private float fillRatio;
+	private int iternum;
 	
 	public Grid(float velocity, float fillRatio) {
 		this.velocity = velocity;
 		this.fillRatio = fillRatio;
+		iternum =-1;
 	}
 	//getter and setter
 	public float getVelocity() {
@@ -23,6 +25,12 @@ public class Grid {
 	}
 	public void setFillRatio(float fillRatio) {
 		this.fillRatio = fillRatio;
+	}
+	public int getIternum() {
+		return iternum;
+	}
+	public void setIternum(int iternum) {
+		this.iternum = iternum;
 	}
 	
 }

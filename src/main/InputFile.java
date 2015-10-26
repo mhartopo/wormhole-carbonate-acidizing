@@ -7,29 +7,81 @@ import java.io.IOException;
 
 public class InputFile {
 	private String FileName;
-	private double[] Container;
+	private float[][] Container;
 	private int ContainerSize;
 	private int DataSize;
 	public InputFile(String FileName, int ContainerSize) {
 		this.ContainerSize = ContainerSize;
 		this.FileName = FileName;
-		setData(new double[ContainerSize]);
+		setData(new float[ContainerSize][ContainerSize]);
 		DataSize = 0;
 	}
 	
 	public void Read() {
+		boolean endfile = false;
 		BufferedReader br = null;
 		String line = "";
 		String splitBy = ",";
+		int midArray = (ContainerSize - 1) / 2;
 		int i = 0;
+		int count =0;
 		try {
-	
 			br = new BufferedReader(new FileReader(FileName));
-			while ((line = br.readLine()) != null && i <= ContainerSize) {
-			    // use comma as separator
-				String[] temp = line.split(splitBy);
-				Container[i] = Double.parseDouble(temp[0]);
-				i++;
+			Container[midArray][midArray] = 0;
+			for (i = 1; i < (ContainerSize + 1)/2 ; i++) {
+				int dif = 2*i + 1;
+				int startIdx = midArray - i;
+				int j = 0;
+				while ( j < dif && !endfile) {
+				    if ((line = br.readLine()) != null) {
+				    	// use comma as separator
+				    	String[] temp = line.split(splitBy);
+				    	Container[startIdx][startIdx+j] = Float.parseFloat(temp[0]);
+				    	j++;
+				    	count++;
+				    } else {
+				    	endfile = true;
+				    }
+				}
+				j = 1;
+				while (j < dif && !endfile) {
+					if ((line = br.readLine()) != null) {
+						// use comma as separator
+						String[] temp = line.split(splitBy);
+						Container[startIdx+j][startIdx+dif-1] = Float.parseFloat(temp[0]);
+						
+						j++;
+						count++;
+					} else {
+				    	endfile = true;
+				    }
+				}
+				
+				j = 1;
+				while (j < dif && !endfile) {
+					if ((line = br.readLine()) != null) {
+						// use comma as separator
+						String[] temp = line.split(splitBy);
+						Container[startIdx+dif-1][startIdx+dif -1 - j] = Float.parseFloat(temp[0]);
+						j++;
+						count++;
+					} else {
+				    	endfile = true;
+				    }
+				}
+				
+				j = 1;
+				while (j < (dif - 1) && !endfile) {
+					if ((line = br.readLine()) != null) {
+						// use comma as separator
+						String[] temp = line.split(splitBy);
+						Container[startIdx+dif-1 -j][startIdx] = Float.parseFloat(temp[0]);
+						j++;
+						count++;
+					} else {
+				    	endfile = true;
+				    }
+				}
 			}
 	
 		} catch (FileNotFoundException e) {
@@ -39,7 +91,7 @@ public class InputFile {
 		} finally {
 			if (br != null) {
 				try {
-					DataSize = i;
+					DataSize = count;
 					br.close();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -48,11 +100,11 @@ public class InputFile {
 		}
 	}
 
-	public double[] getData() {
+	public float[][] getData() {
 		return Container;
 	}
 
-	public void setData(double[] container) {
+	public void setData(float[][] container) {
 		Container = container;
 	}
 
@@ -62,5 +114,14 @@ public class InputFile {
 
 	public void setSize(int size) {
 		DataSize = size;
+	}
+	
+	public void print() {
+		for(int i = 0; i < ContainerSize; i++) {
+			for(int j = 0; j < ContainerSize; j++) {
+				System.out.print(Container[i][j]);
+			}
+			System.out.println();
+		} 
 	}
 }
