@@ -7,13 +7,13 @@ import java.io.IOException;
 
 public class InputFile {
 	private String FileName;
-	private float[][] Container;
+	private double[][] Container;
 	private int ContainerSize;
 	private int DataSize;
 	public InputFile(String FileName, int ContainerSize) {
 		this.ContainerSize = ContainerSize;
 		this.FileName = FileName;
-		setData(new float[ContainerSize][ContainerSize]);
+		setData(new double[ContainerSize][ContainerSize]);
 		DataSize = 0;
 	}
 	
@@ -36,7 +36,7 @@ public class InputFile {
 				    if ((line = br.readLine()) != null) {
 				    	// use comma as separator
 				    	String[] temp = line.split(splitBy);
-				    	Container[startIdx][startIdx+j] = Float.parseFloat(temp[0]);
+				    	Container[startIdx][startIdx+j] = Double.parseDouble(temp[0]);
 				    	j++;
 				    	count++;
 				    } else {
@@ -48,7 +48,7 @@ public class InputFile {
 					if ((line = br.readLine()) != null) {
 						// use comma as separator
 						String[] temp = line.split(splitBy);
-						Container[startIdx+j][startIdx+dif-1] = Float.parseFloat(temp[0]);
+						Container[startIdx+j][startIdx+dif-1] = Double.parseDouble(temp[0]);
 						
 						j++;
 						count++;
@@ -62,7 +62,7 @@ public class InputFile {
 					if ((line = br.readLine()) != null) {
 						// use comma as separator
 						String[] temp = line.split(splitBy);
-						Container[startIdx+dif-1][startIdx+dif -1 - j] = Float.parseFloat(temp[0]);
+						Container[startIdx+dif-1][startIdx+dif -1 - j] = Double.parseDouble(temp[0]);
 						j++;
 						count++;
 					} else {
@@ -75,7 +75,7 @@ public class InputFile {
 					if ((line = br.readLine()) != null) {
 						// use comma as separator
 						String[] temp = line.split(splitBy);
-						Container[startIdx+dif-1 -j][startIdx] = Float.parseFloat(temp[0]);
+						Container[startIdx+dif-1 -j][startIdx] = Double.parseDouble(temp[0]);
 						j++;
 						count++;
 					} else {
@@ -100,11 +100,11 @@ public class InputFile {
 		}
 	}
 
-	public float[][] getData() {
+	public double[][] getData() {
 		return Container;
 	}
 
-	public void setData(float[][] container) {
+	public void setData(double[][] container) {
 		Container = container;
 	}
 
@@ -116,6 +116,9 @@ public class InputFile {
 		DataSize = size;
 	}
 	
+	public int getTableSize() {
+		return ContainerSize;
+	}
 	public void print() {
 		for(int i = 0; i < ContainerSize; i++) {
 			for(int j = 0; j < ContainerSize; j++) {

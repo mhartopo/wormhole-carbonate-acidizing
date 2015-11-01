@@ -1,29 +1,29 @@
 package main;
 
 public class Grid {
-	private float velocity;
-	private float fillRatio;
+	private double velocity;
+	private double fillRatio;
 	private int iternum;
 	
-	public Grid(float velocity, float fillRatio) {
+	public Grid(double velocity, double fillRatio) {
 		this.velocity = velocity;
 		this.fillRatio = fillRatio;
 		iternum =-1;
 	}
 	//getter and setter
-	public float getVelocity() {
+	public double getVelocity() {
 		return velocity;
 	}
-	public void setVelocity(float velocity) {
+	public void setVelocity(double velocity) {
 		this.velocity = velocity;
 	}
 	public boolean isFill() {
 		return ( fillRatio >= 0.01 );
 	}
-	public float getFillRatio() {
+	public double getFillRatio() {
 		return fillRatio;
 	}
-	public void setFillRatio(float fillRatio) {
+	public void setFillRatio(double fillRatio) {
 		this.fillRatio = fillRatio;
 	}
 	public int getIternum() {
